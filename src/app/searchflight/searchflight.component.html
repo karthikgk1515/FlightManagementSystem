@@ -1,0 +1,39 @@
+
+<div align="center">
+    <label> Enter Flight number
+    <input required type="number" #flightnumberRef='ngModel' name="flightNumber" [(ngModel)]="flightnumber" ngModel class="form-control"></label>
+    <div *ngIf='flightnumberRef.errors
+                && flightnumberRef.touched' class="alert alert-danger">
+        <div [hidden]='!flightnumberRef.errors.required'>
+            Provide scheduled flight number
+        </div>
+    </div>
+
+    <input type="button" value="search" (click)="getflight()" class="btn btn-primary" class="form-group"/>
+</div>
+<br>
+<div *ngIf="search" align="center" >
+    <table class="table table-striped" >
+        
+            <tbody align="center">
+        <tr>
+            <th>FLIGHT NUMBER</th>
+            <td> {{flight.flightNumber}} </td></tr>
+            <tr>  <th>FLIGHT MODEL</th>
+            <td> {{flight.flightModel}} </td></tr>
+
+            <tr>
+            <th>CARRIER NAME</th>
+            <td>{{flight.carrierName}}</td></tr>
+            <tr>
+            <th>SEAT CAPACITY</th>
+            <td> {{flight.seatCapacity}} </td>
+        </tr>
+    </tbody>
+        
+    </table>
+</div>
+<div align="center" *ngIf="search1" align="center">
+    <h3> Invalid flight ID</h3>
+</div>
+

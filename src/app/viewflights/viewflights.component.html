@@ -1,0 +1,36 @@
+<div class="container">
+    <table class="table table-striped" *ngIf="flight && flight.length > 0  else elseBlock">
+        <thead>
+        <tr>
+            <th>FLIGHT NUMBER</th>
+            <th>FLIGHT MODEL</th>
+            <th>CARRIER NAME</th>
+            <th>SEAT CAPACITY</th>
+            <th>DELETE FLIGHT</th>
+            <th>EDIT FLIGHT</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of flight">
+                <td> {{e.flightNumber}} </td>
+                <td> {{e.flightModel}} </td>
+                <td>{{e.carrierName}}</td>
+                <td> {{e.seatCapacity}} </td>
+                <td>
+                    <button type="button" class="btn btn-large btn-block btn-primary" (click)=delete(e)>Delete</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-large btn-block btn-primary" (click)=updateflight(e)>Update</button>
+                </td>
+                <td>
+            </tr>
+        </tbody>
+    </table>
+    <ng-template #elseBlock>
+        <h4 align="center"> There are no flights to display,please add the flights! </h4>
+    </ng-template>
+</div>
+<div>
+    <h2>{{message}}</h2>
+</div>
+

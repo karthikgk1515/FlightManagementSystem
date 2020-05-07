@@ -1,0 +1,96 @@
+<div class="container">
+
+    <h3>ADD FLIGHTS</h3>
+
+<form #userForm="ngForm" (ngSubmit)='onSubmit(userForm.value)'>
+
+    <div class="form-group">
+
+        <label>FLIGHT NUMBER: </label>
+
+        <input required minlength="2" type="number" #flightIdRef='ngModel' name="flightNumber" ngModel class="form-control">
+
+        <div *ngIf='flightIdRef.errors && flightIdRef.touched' class="alert alert-danger">
+
+            <div [hidden]='!flightIdRef.errors.required'> Provide Flight Number </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+
+        <label>FLIGHT MODEL: </label>
+
+        <input required minlength="4" type="text" #flightModelRef='ngModel' name="flightModel" ngModel class="form-control">
+
+        <div *ngIf='flightModelRef.errors
+                    && flightModelRef.touched' class="alert alert-danger">
+
+            <div [hidden]='!flightModelRef.errors.required'>
+
+                Provide Flight Model
+
+            </div>
+
+            <div *ngIf='flightModelRef.errors.pattern'>Flight Model should be minimum of 4 characters length</div>
+
+        </div>
+
+    </div>
+
+
+    
+
+    <div class="form-group">
+
+        <label>CARRIER NAME: </label>
+
+        <input required minlength="4" type="text" #carrierName='ngModel' name="carrierName" ngModel
+            class="form-control">
+
+        <div *ngIf='carrierName.errors
+                    && carrierName.touched' class="alert alert-danger">
+
+            <div [hidden]='!carrierName.errors.required'>
+
+                Provide Carrier Name
+
+            </div>
+
+            <div *ngIf='carrierName.errors.pattern'>Carrier name should be minimum of 4 characters length</div>
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>SEAT CAPACITY: </label>
+
+        <input required minlength="1" type="text" #seatCapacityRef='ngModel' name="seatCapacity" ngModel class="form-control">
+
+        <div *ngIf='seatCapacityRef.errors
+                    && seatCapacityRef.touched' class="alert alert-danger">
+
+            <div [hidden]='!seatCapacityRef.errors.required'>
+
+                Provide Seat Capacity
+
+            </div>
+
+            <div *ngIf='seatCapacityRef.errors.pattern'>Seat Capacity should be minimum of 1 characters length</div>
+
+        </div>
+
+    </div>
+    <input [disabled]="userForm.invalid" type="submit" value="Add Flight" class="btn btn-primary">
+
+</form>
+
+</div>
+<div>
+<h2>{{message}}</h2>
+</div>
+

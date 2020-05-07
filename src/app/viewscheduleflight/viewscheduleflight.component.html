@@ -1,0 +1,48 @@
+
+<div class="container">
+    <table class="table table-striped" *ngIf="scheduledflight && scheduledflight.length > 0  else elseBlock">
+        <thead>
+        <tr>
+            <th>SCHEDULED FLIGHT NUMBER</th>
+            <th>FLIGHT NUMBER</th>
+            <th>SOURCE AIRPORT</th>
+            <th>DESTINATION AIRPORT</th>
+            <th>ARRIVAL DATE</th>
+            <th>ARRIVAL TIME</th>
+            <th>DEPARTUE TIME</th>
+            <th>TICKET COST</th>
+            <th>AVAILABLE SEATS</th>
+            <th>DELETE FLIGHT</th>
+            <th>EDIT FLIGHT</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of scheduledflight">
+                <td> {{e.scheduledflightid}} </td>
+                <td>{{e.flight.flightNumber}}</td>
+                <td> {{e.sourceairport.airportName}} </td>
+                <td>{{e.destinationairport.airportName}}</td>
+                <td>{{e.date1}}</td>
+                <td> {{e.arrivaltime}} </td>
+                <td>{{e.departuretime}}</td>
+                <td>{{e.ticketcost}}</td>
+                <td>{{e.availableSeats}}</td>
+                <td>
+                    <button type="button" class="btn btn-large btn-block btn-primary" (click)=delete(e)>Delete</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-large btn-block btn-primary" (click)=update(e)>Update</button>
+                </td>
+                <td>
+            </tr>
+        </tbody>
+    </table>
+    <ng-template #elseBlock>
+        <h4 align="center"> There are no Scheduled flights to display,please add the Scheduled flights! </h4>
+    </ng-template>
+</div>
+<div>
+    <h2>{{message}}</h2>
+</div>
+
+

@@ -1,0 +1,176 @@
+<div class="container">
+
+    <h3>UPDATE SCHEDULED FLIGHTS</h3>
+
+<form #scheduleForm="ngForm" (ngSubmit)='onUpdateScheduledflight(scheduleForm.value)'>
+
+    <div class="form-group">
+
+        <label>SCHEDULED ID: </label>
+
+        <input required minlength="5" type="number" #scheduleIdRef='ngModel' name="scheduledflightid" ngModel class="form-control">
+
+        <div *ngIf='scheduleIdRef.errors && scheduleIdRef.touched' class="alert alert-danger">
+
+            <div [hidden]='!scheduleIdRef.errors.required'> Provide Flight Number </div>
+
+        </div>
+    </div>
+    <div class="form-group">
+    
+        <label>FLIGHT NUMBER: </label>
+
+        <input required minlength="5" type="number" #flightIdRef='ngModel' [(ngModel)]="flightNumber" name="flight.flightNumber" ngModel class="form-control">
+
+        <div *ngIf='flightIdRef.errors && flightIdRef.touched' class="alert alert-danger">
+
+            <div [hidden]='!flightIdRef.errors.required'> Provide Flight Number </div>
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
+
+        <label>SOURCE AIRPORT: </label>
+
+        <input required minlength="5" type="text" #sourceAirportRef='ngModel' [(ngModel)]="sourceairport" name="sourceairport.airportName" ngModel class="form-control">
+
+        <div *ngIf='sourceAirportRef.errors
+                    && sourceAirportRef.touched' class="alert alert-danger">
+
+            <div [hidden]='!sourceAirportRef.errors.required'>
+
+                Provide Source Airport
+
+            </div>
+
+            <div *ngIf='sourceAirportRef.errors.pattern'>Source Airport should be minimum of 5 characters length</div>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>DESTINATION AIRPORT: </label>
+
+        <input required minlength="5" type="text" #destinationAirportRef='ngModel' [(ngModel)]="destinationairport" name="destinationairport.airportName" ngModel class="form-control">
+
+        <div *ngIf='destinationAirportRef.errors
+                    && destinationAirportRef.touched' class="alert alert-danger">
+
+            <div [hidden]='!destinationAirportRef.errors.required'>
+
+                Provide Destination Airport
+
+            </div>
+
+            <div *ngIf='destinationAirportRef.errors.pattern'>Destination Airport should be minimum of 5 characters length</div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="form-group">
+
+        <label>ARRIVAL TIME: </label>
+
+        <input required minlength="4" type="datetime" #arrivalTime='ngModel' name="arrivaltime" ngModel
+            class="form-control">
+
+        <div *ngIf='arrivalTime.errors
+                    && arrivalTime.touched' class="alert alert-danger">
+
+            <div [hidden]='!arrivalTime.errors.required'>
+
+                Provide Arrival Time
+
+            </div>
+
+            <div *ngIf='arrivalTime.errors.pattern'>Arrival Time should be minimum of 6 characters length</div>
+
+        </div>
+
+    </div>
+    
+
+    <div class="form-group">
+
+        <label>DEPARTURE TIME: </label>
+
+        <input required minlength="4" type="datetime" #departureTime='ngModel' name="departuretime" ngModel
+            class="form-control">
+
+        <div *ngIf='departureTime.errors
+                    && departureTime.touched' class="alert alert-danger">
+
+            <div [hidden]='!departureTime.errors.required'>
+
+                Provide Departure Time
+
+            </div>
+
+            <div *ngIf='departureTime.errors.pattern'>Departure Time should be minimum of 6 characters length</div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="form-group">
+
+        <label>TICKET COST: </label>
+
+        <input required minlength="1" type="text" #ticketCostRef='ngModel' name="ticketcost" ngModel class="form-control">
+
+        <div *ngIf='ticketCostRef.errors
+                    && ticketCostRef.touched' class="alert alert-danger">
+
+            <div [hidden]='!ticketCostRef.errors.required'>
+
+                Provide Ticket Cost
+
+            </div>
+
+            <div *ngIf='ticketCostRef.errors.pattern'>Ticket Cost should be minimum of 1 characters length</div>
+
+        </div>
+
+    </div>
+    <div class="form-group">
+
+        <label>AVAILABLE SEATS: </label>
+
+        <input required minlength="1" type="text" #ticketCostRef='ngModel' name="availableSeats" ngModel class="form-control">
+
+        <div *ngIf='ticketCostRef.errors
+                    && ticketCostRef.touched' class="alert alert-danger">
+
+            <div [hidden]='!ticketCostRef.errors.required'>
+
+                Provide availableSeats
+
+            </div>
+
+            <div *ngIf='ticketCostRef.errors.pattern'>Available seats should be minimum of 1 characters length</div>
+
+        </div>
+
+    </div>
+   
+    <input [disabled]="scheduleForm.invalid" type="submit" value="Edit Flight" class="btn btn-primary">
+
+</form>
+
+</div>
+<div>
+<h2>{{message}}</h2>
+</div>
+
+
+

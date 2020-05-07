@@ -1,0 +1,163 @@
+<div class="container">
+  <form #bookingForm="ngForm">
+   
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h5 class="card-title text-center">Flight Booking</h5>
+              <div class="form-group">
+                <label>&nbsp;&nbsp;&nbsp;Flying from:</label>
+                <select class="form-control" name="sourceairport" [(ngModel)]="source">
+                  <option *ngFor="let a of airport" >
+                     {{ a.airportName }}
+                  </option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label>&nbsp;&nbsp;&nbsp;Flying To:</label>
+                <select class="form-control" name="destinationairport" [(ngModel)]="destination">
+                  <option *ngFor="let a of airport" >
+                     {{ a.airportName }}
+                  </option>
+                </select>
+              </div><br>
+              <label >Date:</label><input type="text"  class="form_control" name="bookingDate" [(ngModel)]="date"><br><br>
+              <button class="btn btn-primary" type="submit" (click)="getavailableflights()">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+  <br><br>
+
+  <div *ngIf="available" align="center" >
+    <h3>Available Flights</h3>
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th name="scheduledflightid" [(ngModel)]="scheduledflightid">SCHEDULED FLIGHT ID</th>
+            <th>FLIGHT NUMBER</th>
+            <th>CARRIER NAME</th>
+            <th>FLIGHT MODEL</th>
+            <th>DEPARTURE TIME</th>
+            <th>ARRIVAL TIME</th>
+            <th>TICKET COST</th>
+            <th>AVAILABLE SEATS</th>
+            <th>BOOK TICKET</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let s of flights">
+        <td > {{s.scheduledflightid}}</td>
+         <td>{{s.flight.flightNumber}}</td>
+         <td>{{s.flight.carrierName}}</td>
+         <td>{{s.flight.flightModel}}</td>
+         <td>{{s.departuretime}}</td>
+         <td>{{s.arrivaltime}}</td>
+         <td>{{s.ticketcost}}</td>
+         <td>{{s.availableSeats}}</td>
+         <td>
+          <button type="button" class="btn btn-large btn-block btn-primary"  (click)="bookflight(s)">Book</button>
+      </td>
+        </tr>
+    </tbody>
+        
+    </table>
+</div>
+<div align="center" *ngIf="notavailable" align="center">
+    <h3> Invalid airport details</h3>
+</div>
+
+
+
+<div class="container" *ngIf="booking">
+      
+      <div >
+
+          <label>Booking ID: </label>
+  
+          <input required type="string" [(ngModel)]="bookingid" name="bookingId" value={{bookingid}} ngModel class="form_control">
+  
+          </div>
+
+          <div >
+
+            <label>User name: </label>
+    
+            <input required type="string" [(ngModel)]="username" name="username" ngModel class="form_control">
+    
+            </div>
+           
+         
+          <button class="btn btn-success" (click)=addbooking(bookingForm.value)   type="submit">Book now</button>
+          
+          <div class="form-group " *ngIf="next">
+          No of Passenger: <input required max="1" type="number" #passengerCountRef='ngModel' value="passengercount" name="noOfPassengers" [(ngModel)]="passengercount" ngModel class="form-control">
+  
+  <div  class="container" align="center" >
+    <h4>Passenger Details:</h4>
+    <form >
+      <div class="container" *ngIf="passengercount<=4">
+       
+        <div class="form-row" *ngFor="let obj of passengerarray; let i=index">
+        
+          <div class="form-group col-md-4">
+            <label>Passenger Name</label>
+            <input type="text" class="form-control" name="passengername{{i}}" [(ngModel)]="obj.passengername">
+          </div>
+
+          <div class="form-group col-md-4">
+            <label>Passenger UIN</label>
+            <input type="text" class="form-control" name="passengerUIN{{i}}" [(ngModel)]="obj.passengerUIN">
+          </div>
+
+          <div class="form-group col-md-4">
+            <label>Passenger Age</label>
+            <input type="text" class="form-control" name="passengerage{{i}}" [(ngModel)]="obj.passengerage">
+          </div>
+
+          <div class="form-group col-md-4">
+            <label>Passenger Phone no</label>
+            <input type="text" class="form-control" name="pnrnumber{{i}}" [(ngModel)]="obj.pnrnumber">
+          </div>
+
+          <div class="form-group col-md-4">
+            <label>Passenger Gender</label>
+            <input type="text" class="form-control" name="passengergender{{i}}" [(ngModel)]="obj.passengergender">
+          </div>
+           
+          <div class="form-group " *ngIf="i!=0">
+          <span  (click)="removepassenger(i)" class="btn btn-success" >-</span><br>
+        </div>
+        
+          <div class="form-group " >
+            <span  (click)="addpassenger()" class="btn btn-success" >+</span><br>
+          </div>
+        </div>
+        
+        </div>
+      
+      </form>
+    </div>
+    
+      <div align="left">
+        
+          <p >Maximum 4 passengers per booking</p><br><br>
+          <label for="col-sm-4">Billing Address:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="name" [(ngModel)]="address" size="50"><br>
+          <label for="col-sm-4">Contact Number:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="number">
+          <tr>
+              <td colspan="2"><input type="checkbox">I accept the terms and conditions</td><br><br>
+          </tr>
+      
+    <!--     <button class="btn btn-success"   type="submit">Confirm Booking</button>--> 
+    <button class="btn btn-success" (click)="savepassenger()"  type="submit">Confirm Booking</button>
+          <h3>{{message}}</h3>
+        </div>
+        
+          
+</div>  
+</div> 
+
+
+

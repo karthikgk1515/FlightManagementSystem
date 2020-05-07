@@ -1,0 +1,51 @@
+<div align="center">
+    <label> Enter Scheduled flight ID
+    <input required type="number" #scheduledflightidRef='ngModel' name="scheduledflightid" [(ngModel)]="scheduledflightid" ngModel class="form-control"></label>
+    <div *ngIf='scheduledflightidRef.errors
+                && scheduledflightidRef.touched' class="alert alert-danger">
+        <div [hidden]='!scheduledflightidRef.errors.required'>
+            Provide scheduled flight number
+        </div>
+    </div>
+    <input type="button" value="search " (click)="getscheduledflight()" class="btn btn-primary" class="form-group"/>
+</div>
+<div *ngIf="search" align="center" >
+    <table class="table table-striped" >
+        
+            <tbody align="center">
+        <tr>
+            <th>SCHEDULED FLIGHT ID</th>
+            <td> {{scheduledflight.scheduledflightid}} </td></tr>
+            <tr>  <th>FLIGHT NUMBER</th>
+            <td> {{scheduledflight.flight.flightNumber}} </td></tr>
+
+            <tr>
+            <th>ARRIVAL TIME</th>
+            <td>{{scheduledflight.arrivaltime}}</td></tr>
+            <tr>
+            <th>DEPARTURE TIME</th>
+            <td> {{scheduledflight.departuretime}} </td>
+        </tr>
+        <tr>
+            <th>SOURCE AIRPORT</th>
+            <td> {{scheduledflight.destinationairport.airportName}} </td>
+        </tr>
+        <tr>
+            <th>DESTINATION AIRPORT</th>
+            <td> {{scheduledflight.sourceairport.airportName}} </td>
+        </tr>
+        <tr>
+            <th>TICKET COST</th>
+            <td> {{scheduledflight.ticketcost}} </td>
+        </tr>
+        <tr>
+            <th>AVAILABLE SEATS</th>
+            <td> {{scheduledflight.availableSeats}} </td>
+        </tr>
+    </tbody>
+        
+    </table>
+</div>
+<div align="center" *ngIf="search1" align="center">
+<h3> Invalid flight ID</h3>
+</div>
