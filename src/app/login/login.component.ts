@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
   onSubmit(u:Userdata){
     this.ser.login(u).subscribe(
       users=>{
-        console.log(users);
         if(users=="admin")
             this.router.navigate(['app-adminoperations']);
         else if(users=="customer")
