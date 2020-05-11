@@ -1,3 +1,6 @@
+<div class="container">
+    <button type="button" class="btn btn-primary" routerLink="/app-adminoperations">Home</button>
+    </div>
 <div align="center">
     <label> Enter Scheduled flight ID
     <input required type="number" #scheduledflightidRef='ngModel' name="scheduledflightid" [(ngModel)]="scheduledflightid" ngModel class="form-control"></label>
@@ -9,8 +12,9 @@
     </div>
     <input type="button" value="search " (click)="getscheduledflight()" class="btn btn-primary" class="form-group"/>
 </div>
-<div *ngIf="search" align="center" >
-    <table class="table table-striped" >
+<div class="container"  *ngIf="scheduledflight!=null  else elseBlock">
+  
+<table class="table table-striped">
         
             <tbody align="center">
         <tr>
@@ -28,11 +32,11 @@
         </tr>
         <tr>
             <th>SOURCE AIRPORT</th>
-            <td> {{scheduledflight.destinationairport.airportName}} </td>
+            <td> {{scheduledflight.sourceairport.airportName}} </td>
         </tr>
         <tr>
             <th>DESTINATION AIRPORT</th>
-            <td> {{scheduledflight.sourceairport.airportName}} </td>
+            <td> {{scheduledflight.destinationairport.airportName}} </td>
         </tr>
         <tr>
             <th>TICKET COST</th>
@@ -45,7 +49,15 @@
     </tbody>
         
     </table>
+    
+        <button type="button" class="btn btn-primary" (click)=delete(scheduledflight)>Delete</button>
+    &nbsp;&nbsp;
+    
+        <button type="button" class="btn btn-primary" (click)=update(scheduledflight)>Update</button>
+    
 </div>
-<div align="center" *ngIf="search1" align="center">
-<h3> Invalid flight ID</h3>
-</div>
+<ng-template #elseBlock>
+    <h4 align="center">No flights are available </h4>
+  </ng-template>
+  
+

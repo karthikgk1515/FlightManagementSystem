@@ -15,6 +15,7 @@ import { SearchflightComponent } from './searchflight/searchflight.component';
 import { SearchscheduledflightComponent } from './searchscheduledflight/searchscheduledflight.component';
 import { BookingComponent } from './booking/booking.component';
 import { CancelbookingComponent} from './cancelbooking/cancelbooking.component';
+import { AirportComponent } from './airport/airport.component';
 
 const routes: Routes = [
   {path:'app-login',component:LoginComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path: 'app-searchflight', component:SearchflightComponent},
   {path: 'app-searchscheduledflight', component:SearchscheduledflightComponent},
   {path: 'app-booking', component:BookingComponent},
-  {path: 'app-cancelbooking', component:CancelbookingComponent}
+  {path: 'app-cancelbooking', component:CancelbookingComponent},
+  {path: 'app-airport', component:AirportComponent}
 ];
 
 @NgModule({

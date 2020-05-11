@@ -29,10 +29,12 @@ export class ViewscheduleflightComponent implements OnInit {
     this.router.navigate(['app-updatescheduleflight']); 
   }
   delete(deleteschedule: Scheduledflight): any {
-    this.scheduleservice.deleteScheduledflight(deleteschedule.scheduledflightid).subscribe(data => {
-      this.message = data
-    });
-    this.router.navigate(['/app-viewscheduleflight']);
+    if(confirm("Are you sure you want to delete?")){
+      this.scheduleservice.deleteScheduledflight(deleteschedule.scheduledflightid).subscribe(data => {
+        this.message = data
+      });
+      window.location.reload();
+    }
   }
 
 

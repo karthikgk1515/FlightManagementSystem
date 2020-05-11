@@ -1,8 +1,13 @@
-<div class="container">
 
+<div class="container">
+        <button type="button" class="btn btn-primary" routerLink="/app-adminoperations">Home</button>
+        <br>
+        <div align="center">
+            <h2>{{message}}</h2>
+            </div>
     <h3>ADD FLIGHTS</h3>
 
-<form #userForm="ngForm" (ngSubmit)='onSubmit(userForm.value)'>
+<form #flightForm="ngForm" (ngSubmit)='onSubmit(flightForm.value)'>
 
     <div class="form-group">
 
@@ -85,7 +90,7 @@
         </div>
 
     </div>
-    <input [disabled]="userForm.invalid" type="submit" value="Add Flight" class="btn btn-primary">
+    <input [disabled]="flightForm.invalid" type="submit" value="Add Flight" class="btn btn-primary">
 
 </form>
 

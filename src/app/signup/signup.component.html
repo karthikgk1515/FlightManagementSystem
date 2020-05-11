@@ -91,7 +91,7 @@
 
             <label>User PhoneNumber: </label>
 
-            <input required length="10" type="number" #userphoneRef='ngModel' name="userphone" ngModel class="form-control">
+            <input required length="10" type="number" pattern="^((\\+91-?)|0)?[0-9]{10}$" #userphoneRef='ngModel' name="userphone" ngModel class="form-control">
 
             <div *ngIf='userphoneRef.errors && userphoneRef.touched' class="alert alert-danger">
 

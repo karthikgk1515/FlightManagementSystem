@@ -10,24 +10,27 @@ import { Router } from '@angular/router';
 export class SearchflightComponent implements OnInit {
 
   flightnumber:number;
-  search:boolean=false;
-  search1:boolean=false;
   flight:Flight;
-  private router: Router
-  constructor(private flightservice: FlightserviceService, router: Router) { 
+  message:any
+  constructor(private flightservice: FlightserviceService,private router: Router) { 
     this.router=router;
   }
   ngOnInit(): any {
   }
   getflight(){
     this.flightservice.searchflight(this.flightnumber).subscribe((data)=>this.flight=data);
-    if(this.flight == null){
-      this.search1 = true;
-      this.search = false;
-    }
-    else{
-      this.search1 = false;
-      this.search= true;
+  
+  }
+  updateflight(updateflight:Flight){
+    this.flightservice.updateFlight(updateflight);
+    this.router.navigate(['app-updateflights']);
+  }
+  delete(deleteflight:Flight):any{
+    if(confirm("Are you sure you want to delete?")){
+      this.flightservice.deleteflight(deleteflight.flightNumber).subscribe(data => {
+        this.message = data
+      });
+      window.location.reload();
     }
   }
 }

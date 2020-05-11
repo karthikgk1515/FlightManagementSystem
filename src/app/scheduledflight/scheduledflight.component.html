@@ -1,5 +1,9 @@
+<br>
+<div align="center">
+    <h2>{{message}}</h2>
+    </div>
 <div class="container">
-
+        <button type="button" class="btn btn-primary" routerLink="/app-adminoperations">Home</button>
     <h3>ADD SCHEDULED FLIGHTS</h3>
 
 <form #scheduleForm="ngForm" (ngSubmit)='onSubmit(scheduleForm.value)'>
@@ -31,11 +35,11 @@
         </div>
 
 
-    <div class="form-group">
+   <div class="form-group">
 
         <label>SOURCE AIRPORT: </label>
 
-        <input required minlength="5" type="text" #sourceairportRef='ngModel' [(ngModel)]="sourceairport" name="sourceairport.airportName" ngModel class="form-control">
+        <input required minlength="1" type="text" #sourceairportRef='ngModel' [(ngModel)]="sourceairport" name="sourceairport.airportName" ngModel class="form-control">
 
         <div *ngIf='sourceairportRef.errors
                     && sourceairportRef.touched' class="alert alert-danger">
@@ -46,18 +50,33 @@
 
             </div>
 
-            <div *ngIf='sourceairportRef.errors.pattern'>Source Airport should be minimum of 5 characters length</div>
+            <div *ngIf='sourceairportRef.errors.pattern'>Provide source airport</div>
 
         </div>
 
     </div>
 
-
-    <div class="form-group">
+<!--<div class="form-group">
+    <label>&nbsp;&nbsp;&nbsp;Source:</label>
+    <select class="form-control" name="sourceairport.airportName" [(ngModel)]="sourceairport">
+      <option *ngFor="let a of airport" >
+       {{ a.airportName }}
+      </option>
+      </select>
+  </div>
+  <div class="form-group">
+    <label>&nbsp;&nbsp;&nbsp;Destination:</label>
+    <select class="form-control" name="destinationairport.airportName" [(ngModel)]="destinationairport">
+      <option *ngFor="let a of airport" >
+        {{ a.airportName }}
+      </option>
+    </select>
+  </div><br>-->
+   <div class="form-group">
 
         <label>DESTINATION AIRPORT: </label>
 
-        <input required minlength="5" type="text" #destinationairportRef='ngModel' [(ngModel)]="destinationairport" name="destinationairport.airportName" ngModel class="form-control">
+        <input required minlength="1" type="text" #destinationairportRef='ngModel' [(ngModel)]="destinationairport" name="destinationairport.airportName" ngModel class="form-control">
 
         <div *ngIf='destinationairportRef.errors
                     && destinationairportRef.touched' class="alert alert-danger">
@@ -68,17 +87,17 @@
 
             </div>
 
-            <div *ngIf='destinationairportRef.errors.pattern'>Destination Airport should be minimum of 5 characters length</div>
+            <div *ngIf='destinationairportRef.errors.pattern'>Provide Destination airport</div>
 
         </div>
 
     </div>
-    
+
     <div class="form-group">
 
         <label>ARRIVAL DATE: </label>
 
-        <input required length=10 type="date"  #arrivaldate='ngModel' name="date1" ngModel
+        <input required  type="date"  #arrivaldate='ngModel' name="date1" ngModel
             class="form-control">
 
         <div *ngIf='arrivaldate.errors
@@ -188,9 +207,6 @@
 
 </form>
 
-</div>
-<div>
-<h2>{{message}}</h2>
 </div>
 
 

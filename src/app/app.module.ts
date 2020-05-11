@@ -18,7 +18,7 @@ import { UpdatescheduleflightComponent } from './updatescheduleflight/updatesche
 import { SearchflightComponent } from './searchflight/searchflight.component';
 import { SearchscheduledflightComponent } from './searchscheduledflight/searchscheduledflight.component';
 import { CancelbookingComponent } from './cancelbooking/cancelbooking.component';
-
+import { AirportComponent } from './airport/airport.component';
 
 
 @NgModule({
@@ -37,7 +37,8 @@ import { CancelbookingComponent } from './cancelbooking/cancelbooking.component'
     UpdatescheduleflightComponent,
     SearchflightComponent,
     SearchscheduledflightComponent,
-    CancelbookingComponent
+    CancelbookingComponent,
+    AirportComponent
   ],
   imports: [
     BrowserModule,

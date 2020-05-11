@@ -1,5 +1,6 @@
 
 <div class="container">
+  <button type="button" class="btn btn-primary" routerLink="/app-customeroperations">Home</button>
   <form #bookingForm="ngForm">
    
       <div class="row">
@@ -8,22 +9,22 @@
             <div class="card-body">
               <h5 class="card-title text-center">Flight Booking</h5>
               <div class="form-group">
-                <label>&nbsp;&nbsp;&nbsp;Flying from:</label>
+                <label>&nbsp;&nbsp;&nbsp;Source:</label>
                 <select class="form-control" name="sourceairport" [(ngModel)]="source">
                   <option *ngFor="let a of airport" >
                      {{ a.airportName }}
                   </option>
                   </select>
-              </div>
+              </div><br>
               <div class="form-group">
-                <label>&nbsp;&nbsp;&nbsp;Flying To:</label>
+                <label>&nbsp;&nbsp;&nbsp;Destination:</label>
                 <select class="form-control" name="destinationairport" [(ngModel)]="destination">
                   <option *ngFor="let a of airport" >
                      {{ a.airportName }}
                   </option>
                 </select>
               </div><br>
-              <label >Date:</label><input type="text"  value="yyyy-dd-mm" class="form_control" name="bookingDate" [(ngModel)]="date"><br><br>
+              <label >Date:</label><input type="date"  class="form_control" name="bookingDate" [(ngModel)]="date"><br><br>
               <button class="btn btn-primary" type="submit" (click)="getavailableflights()">Search</button>
             </div>
           </div>
@@ -31,13 +32,11 @@
       </div>
    
   <br><br>
-
-  <div *ngIf="available" align="center" >
-    <h3>Available Flights</h3>
-    <table class="table table-striped" >
+  
+  <table class="table table-striped" *ngIf="flights && flights.length > 0  else elseBlock" >
       <thead>
         <tr>
-          <th name="scheduledflightid" [(ngModel)]="scheduledflightid">SCHEDULED FLIGHT ID</th>
+          <th>SCHEDULED FLIGHT ID</th>
             <th>FLIGHT NUMBER</th>
             <th>CARRIER NAME</th>
             <th>FLIGHT MODEL</th>
@@ -65,20 +64,20 @@
     </tbody>
         
     </table>
-</div>
-<div align="center" *ngIf="notavailable" align="center">
-    <h3> Invalid airport details</h3>
-</div>
+
+<ng-template #elseBlock>
+  <h4 align="center">No flights are available </h4>
+</ng-template>
 
 
 
-<div class="container" *ngIf="booking">
+<div class="container" *ngIf="bookingid!=null">
       
       <div >
 
           <label>Booking ID: </label>
   
-          <input required type="string" [(ngModel)]="bookingid" name="bookingId" value={{bookingid}} ngModel class="form_control">
+          <input required type="string" [(ngModel)]="bookingid"  readonly="readonly" name="bookingId" value={{bookingid}} ngModel class="form_control">
   
           </div>
 
@@ -90,11 +89,7 @@
     
             </div>
            
-         
-          <button class="btn btn-success" (click)=addbooking(bookingForm.value)   type="submit">Book now</button>
-          
-          <div class="form-group " *ngIf="next">
-          No of Passenger: <input required max="1" type="number" #passengerCountRef='ngModel' value="passengercount" name="noOfPassengers" [(ngModel)]="passengercount" ngModel class="form-control">
+          No of Passenger: <input required max="1" type="number" readonly="readonly" #passengerCountRef='ngModel' value="passengercount" name="noOfPassengers" [(ngModel)]="passengercount" ngModel class="form-control">
   
   <div  class="container" align="center" >
     <h4>Passenger Details:</h4>
@@ -105,27 +100,52 @@
         
           <div class="form-group col-md-4">
             <label>Passenger Name</label>
-            <input type="text" class="form-control" name="passengername{{i}}" [(ngModel)]="obj.passengername">
+            <input required type="text" #pname='ngModel' class="form-control" name="passengername{{i}}" [(ngModel)]="obj.passengername">
+            <div *ngIf='pname.errors && pname.touched' class="alert alert-danger">
+
+              <div [hidden]='!pname.errors.required'> Provide Passenger name </div>
+  
+          </div>
           </div>
 
           <div class="form-group col-md-4">
             <label>Passenger UIN</label>
-            <input type="text" class="form-control" name="passengerUIN{{i}}" [(ngModel)]="obj.passengerUIN">
+            <input  required type="text" minlength="12" #puin='ngModel' class="form-control" name="passengerUIN{{i}}" maxlength="12" [(ngModel)]="obj.passengerUIN">
+            <div *ngIf='puin.errors && puin.touched' class="alert alert-danger">
+
+              <div [hidden]='!puin.errors.required'> Provide Passenger UIN</div>
+  
+          </div>
           </div>
 
           <div class="form-group col-md-4">
             <label>Passenger Age</label>
-            <input type="text" class="form-control" name="passengerage{{i}}" [(ngModel)]="obj.passengerage">
+            <input required type="text" #page='ngModel' class="form-control"  name="passengerage{{i}}" [(ngModel)]="obj.passengerage">
+            <div *ngIf='page.errors && page.touched' class="alert alert-danger">
+
+              <div [hidden]='!page.errors.required'> Provide Passenger age </div>
+  
+          </div>
           </div>
 
           <div class="form-group col-md-4">
             <label>Passenger Phone no</label>
-            <input type="text" class="form-control" name="pnrnumber{{i}}" [(ngModel)]="obj.pnrnumber">
+            <input required type="text" #pphone='ngModel'class="form-control"  pattern="^((\\+91-?)|0)?[0-9]{10}$" name="pnrnumber{{i}}" [(ngModel)]="obj.pnrnumber">
+            <div *ngIf='pphone.errors && pphone.touched' class="alert alert-danger">
+
+              <div [hidden]='!pphone.errors.required'> Provide Passenger phone number </div>
+  
+          </div>
           </div>
 
           <div class="form-group col-md-4">
             <label>Passenger Gender</label>
-            <input type="text" class="form-control" name="passengergender{{i}}" [(ngModel)]="obj.passengergender">
+            <input required type="text" #pgender='ngModel' class="form-control"  name="passengergender{{i}}" [(ngModel)]="obj.passengergender">
+            <div *ngIf='page.errors && page.touched' class="alert alert-danger">
+
+              <div [hidden]='!page.errors.required'> Provide Passenger Gender </div>
+  
+          </div>
           </div>
            
           <div class="form-group " *ngIf="i!=0">
@@ -137,23 +157,23 @@
           </div>
         </div>
         
-        </div>
+   
       
-      </form>
+     
     </div>
     
       <div align="left">
         
           <p >Maximum 4 passengers per booking</p><br><br>
-          <label for="col-sm-4">Billing Address:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="name" [(ngModel)]="address" size="50"><br>
+          <label for="col-sm-4">Billing Address:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="name"  size="50"><br>
           <label for="col-sm-4">Contact Number:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="number">
           <tr>
               <td colspan="2"><input type="checkbox">I accept the terms and conditions</td><br><br>
           </tr>
-    <button class="btn btn-success" (click)="savepassenger()"  type="submit">Confirm Booking</button>
-          <h3>{{message}}</h3>
+    <button [disabled]="bookingForm.invalid" class="btn btn-success"  (click)="addbooking(bookingForm.value)"  type="submit">Confirm Booking</button>
+          
         </div>
-        
+      </form>
           
 </div>  
 </div> 

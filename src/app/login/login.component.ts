@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['app-adminoperations']);
         else if(users=="customer")
             this.router.navigate(['app-customeroperations']);
-        else if(users=="no")
-           return alert("Enter correct credentials");
+        else if(users=="invalid")
+          alert("Enter correct credentials");
       }
     );
   }

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormGroup } from '@angular/forms';
-import { Scheduledflight } from './scheduleservice.service';
 
 @Injectable({
   providedIn: 'root'
@@ -58,14 +56,9 @@ export class BookingserviceService {
     console.log("ins service add");
     console.log(addpassenger);
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.post("http://localhost:9999/customer/addPassenger/"+bookingid, addpassenger,  { headers, responseType: 'text'});
+    return this.http.post("http://localhost:9999/customer/addPassenger/"+bookingid, addpassenger,  { headers, responseType: 'json'});
   }
 
-  public getpassenger() {
-    console.log("ins service get schedule");
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.get("http://localhost:9999/customer/getAllPassenger", {headers, responseType:'json'});
-  }
 
   public getAirports() {
     console.log("ins service get schedule");
@@ -77,6 +70,13 @@ export class BookingserviceService {
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
     return this.http.get("http://localhost:9999/customer/booking/"+source+'/'+destination+'/'+date, {headers, responseType:'json'});
   }
+  public checkavailability(noofpassengers:number,availableseats:number,scheduledflightid:number)
+  {
+    console.log("check availability");
+    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
+   return this.http.get("http://localhost:9999/customer/checkavailability/"+noofpassengers+'/'+availableseats+'/'+scheduledflightid, {responseType:'text'});
+  }
+
 }
 
 export class Booking

@@ -26,13 +26,12 @@ export class ViewflightsComponent implements OnInit {
     this.router.navigate(['app-updateflights']);
   }
   delete(deleteflight:Flight):any{
-    this.flightservice.deleteflight(deleteflight.flightNumber).subscribe(data=>{
-      this.message=data
-    });
-    this.router.navigate(['app-viewflights']);
+    if(confirm("Are you sure you want to delete?")){
+      this.flightservice.deleteflight(deleteflight.flightNumber).subscribe(data => {
+        this.message = data
+      });
+      window.location.reload();
+    }
   }
-
-
-  
 
 }

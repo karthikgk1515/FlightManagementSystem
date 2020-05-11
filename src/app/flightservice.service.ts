@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,6 +45,12 @@ updateflight:Flight
       const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
       return this.ser.get<Flight>("http://localhost:9918/admin/getflight/" + flightNumber);
     }
+    public addairport(addairport:Airport){
+      console.log("ins service add");
+      console.log(addairport);
+      const headers=new HttpHeaders().set('Content_Type','text/plain ; charset=utf-8')
+      return this.ser.post("http://localhost:9918/admin/Addairport",addairport,  { headers, responseType: 'text'});
+    }
 }
 
 export class Flight{
@@ -52,4 +59,8 @@ export class Flight{
   carrierName:String;
   seatCapacity:number;
 }
-
+export class Airport{
+  airportCode:string;
+  airportLocation:string;
+  airportName:string;
+}

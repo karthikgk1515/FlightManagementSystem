@@ -9,22 +9,25 @@ import { Router } from '@angular/router';
 })
 export class SearchscheduledflightComponent implements OnInit {
   scheduledflightid:number;
-  search:boolean=false;
-  search1:boolean=false;
   scheduledflight:any;
-  constructor(private scheduleservice: ScheduleserviceService, router: Router) { }
+  message:any;
+  constructor(private scheduleservice: ScheduleserviceService,private router: Router) { }
 
   ngOnInit(): void {
   }
   getscheduledflight(){
     this.scheduleservice.searchScheduledflight(this.scheduledflightid).subscribe((data)=>this.scheduledflight=data);
-    if(this.scheduledflight == null){
-      this.search1 = true;
-      this.search = false;
-    }
-    else{
-      this.search1 = false;
-      this.search= true;
+  }
+  update(updateschedule: Scheduledflight) {
+    this.scheduleservice.updateScheduledflight(updateschedule);
+    this.router.navigate(['app-updatescheduleflight']); 
+  }
+  delete(deleteschedule: Scheduledflight): any {
+    if(confirm("Are you sure you want to delete?")){
+      this.scheduleservice.deleteScheduledflight(deleteschedule.scheduledflightid).subscribe(data => {
+        this.message = data
+      });
+      window.location.reload();
     }
   }
 }
