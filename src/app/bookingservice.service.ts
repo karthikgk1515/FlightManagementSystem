@@ -76,7 +76,12 @@ export class BookingserviceService {
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
    return this.http.get("http://localhost:9999/customer/checkavailability/"+noofpassengers+'/'+availableseats+'/'+scheduledflightid, {responseType:'text'});
   }
-
+  public updateseats(deletebooking:Booking,noofpassengers:number)
+  {
+    console.log("update seats");
+    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
+   return this.http.put("http://localhost:9999/customer/updateseats/"+noofpassengers,deletebooking, {headers, responseType:'text'});
+  }
 }
 
 export class Booking

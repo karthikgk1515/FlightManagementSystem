@@ -47,27 +47,6 @@
         
         <div class="form-group">
 
-            <label>Usertype: </label>
-
-            <input required minlength="5" type="text" #usertypeRef='ngModel' name="usertype" ngModel class="form-control">
-
-            <div *ngIf='usertypeRef.errors
-                        && usertypeRef.touched' class="alert alert-danger">
-
-                <div [hidden]='!usertypeRef.errors.required'>
-
-                    Provide User Type
-
-                </div>
-
-                
-            </div>
-
-        </div>
-
-        
-        <div class="form-group">
-
             <label>UserPassword: </label>
 
             <input required minlength="6" type="password" #userpasswordRef='ngModel' name="userpassword" ngModel class="form-control">
@@ -129,50 +108,8 @@
 
 </div>
 
- <div>
+ <div align="center">
     <h2>{{message}}</h2>
 </div>
 
 
-
-<!--<body>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div class="card card-signin my-5">
-            <div class="card-body">
-              <h5 class="card-title text-center">Sign Up</h5>
-              <form class="form-signin">
-                  <label for="inputType">User Type:</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <label class="radio-inline"><input type="radio" name="usertype" checked>Admin</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <label class="radio-inline"><input type="radio" name="optradio">Customer</label>
-                <div class="form-label-group">
-                    <div class="form-label-group">
-                        <label for="inputPhone">User Id</label>
-                        <input type="number" id="inputPhone" class="form-control" placeholder="User id" name="userid" required>
-                      </div>
-                    <label for="inputName">User Name</label>
-                   <input type="name" id="inputName" class="form-control" placeholder="User Name" name="username" required autofocus>
-                 </div>
-                 <div class="form-label-group">
-                    <label for="inputEmail">Email address</label>
-                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="useremail" required autofocus>
-                  </div>
-                <div class="form-label-group">
-                    <label for="inputPassword">Password</label>
-                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="userpassword" required>
-                </div>
-                <div class="form-label-group">
-                  <label for="inputPhone">Phone Number</label>
-                  <input type="phonenumber" id="inputPhone" class="form-control" placeholder="Phone number" name="userphone" required>
-                </div>
-                <br>
-               
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign Up</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>-->

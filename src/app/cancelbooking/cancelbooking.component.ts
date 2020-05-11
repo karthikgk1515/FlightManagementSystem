@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Booking, Passenger,BookingserviceService} from '../bookingservice.service';
 import {Userdata, MyserviceService} from '../myservice.service'
 import { Router } from '@angular/router';
+import { Scheduledflight } from '../scheduleservice.service';
 
 @Component({
   selector: 'app-cancelbooking',
@@ -9,9 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./cancelbooking.component.css']
 })
 export class CancelbookingComponent implements OnInit {
-  message:string;
+  message:any;
   username:string;
+  message1:any;
   book:Booking[];
+  scheduledflight:Scheduledflight;
   constructor(private userservice:MyserviceService,private bookingservice:BookingserviceService, private router:Router) { }
 
   ngOnInit(): any {
@@ -35,6 +38,9 @@ export class CancelbookingComponent implements OnInit {
     this.bookingservice.deleteBooking(deletebooking.bookingId).subscribe(data => {
       this.message = data
     });
+   
+    this.bookingservice.updateseats(deletebooking,deletebooking.noOfPassengers).subscribe(data => {
+      this.message1=data});
     window.location.reload();
   }
 }

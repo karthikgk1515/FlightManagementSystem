@@ -11,6 +11,7 @@
               <div class="form-group">
                 <label>&nbsp;&nbsp;&nbsp;Source:</label>
                 <select class="form-control" name="sourceairport" [(ngModel)]="source">
+                  <option>Select...</option>
                   <option *ngFor="let a of airport" >
                      {{ a.airportName }}
                   </option>
@@ -19,6 +20,7 @@
               <div class="form-group">
                 <label>&nbsp;&nbsp;&nbsp;Destination:</label>
                 <select class="form-control" name="destinationairport" [(ngModel)]="destination">
+                  <option>Select...</option>
                   <option *ngFor="let a of airport" >
                      {{ a.airportName }}
                   </option>
@@ -40,8 +42,8 @@
             <th>FLIGHT NUMBER</th>
             <th>CARRIER NAME</th>
             <th>FLIGHT MODEL</th>
-            <th>DEPARTURE TIME</th>
             <th>ARRIVAL TIME</th>
+            <th>DEPARTURE TIME</th>
             <th>TICKET COST</th>
             <th>AVAILABLE SEATS</th>
             <th>BOOK TICKET</th>
@@ -53,8 +55,8 @@
          <td>{{s.flight.flightNumber}}</td>
          <td>{{s.flight.carrierName}}</td>
          <td>{{s.flight.flightModel}}</td>
-         <td>{{s.departuretime}}</td>
          <td>{{s.arrivaltime}}</td>
+         <td>{{s.departuretime}}</td>
          <td>{{s.ticketcost}}</td>
          <td>{{s.availableSeats}}</td>
          <td>
@@ -130,7 +132,7 @@
 
           <div class="form-group col-md-4">
             <label>Passenger Phone no</label>
-            <input required type="text" #pphone='ngModel'class="form-control"  pattern="^((\\+91-?)|0)?[0-9]{10}$" name="pnrnumber{{i}}" [(ngModel)]="obj.pnrnumber">
+            <input required maxlength="10" type="text" #pphone='ngModel'class="form-control"  pattern="^((\\+91-?)|0)?[0-9]{10}$" name="pnrnumber{{i}}" [(ngModel)]="obj.pnrnumber">
             <div *ngIf='pphone.errors && pphone.touched' class="alert alert-danger">
 
               <div [hidden]='!pphone.errors.required'> Provide Passenger phone number </div>
@@ -166,11 +168,11 @@
         
           <p >Maximum 4 passengers per booking</p><br><br>
           <label for="col-sm-4">Billing Address:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="name"  size="50"><br>
-          <label for="col-sm-4">Contact Number:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="number">
+          <label for="col-sm-4">Contact Number:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input maxlength="10" type="text" name="number">
           <tr>
               <td colspan="2"><input type="checkbox">I accept the terms and conditions</td><br><br>
           </tr>
-    <button [disabled]="bookingForm.invalid" class="btn btn-success"  (click)="addbooking(bookingForm.value)"  type="submit">Confirm Booking</button>
+    <button [disabled]="bookingForm.invalid" class="btn btn-success"  (click)="addbooking(bookingForm.value)"  type="submit">Book Now</button>
           
         </div>
       </form>
