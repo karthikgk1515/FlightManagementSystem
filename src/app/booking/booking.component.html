@@ -10,19 +10,19 @@
               <h5 class="card-title text-center">Flight Booking</h5>
               <div class="form-group">
                 <label>&nbsp;&nbsp;&nbsp;Source:</label>
-                <select class="form-control" name="sourceairport" [(ngModel)]="source">
+                <select class="form-control" name="airportName" [(ngModel)]="source1">
                   <option>Select...</option>
                   <option *ngFor="let a of airport" >
-                     {{ a.airportName }}
+                     {{a.airportLocation}}-{{ a.airportName }}
                   </option>
                   </select>
               </div><br>
               <div class="form-group">
                 <label>&nbsp;&nbsp;&nbsp;Destination:</label>
-                <select class="form-control" name="destinationairport" [(ngModel)]="destination">
+                <select class="form-control" name="destinationairport" [(ngModel)]="destination1">
                   <option>Select...</option>
                   <option *ngFor="let a of airport" >
-                     {{ a.airportName }}
+                   {{a.airportLocation}}-{{ a.airportName }}
                   </option>
                 </select>
               </div><br>

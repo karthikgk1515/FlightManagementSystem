@@ -12,8 +12,6 @@ export class BookingComponent implements OnInit {
 
   flights:Scheduledflight[];
   airport:Airport[];
-  source:string;
-  destination:string;
   date:string;
   bookingid:any;
   passengercount:number=1;
@@ -23,7 +21,8 @@ export class BookingComponent implements OnInit {
   username:string;
   message:any
   availableseats:any;
-
+  source1:string;
+  destination1:string;
   constructor(private scheduledservice:ScheduleserviceService, private bookingservice:BookingserviceService, private router:Router) { }
 
  
@@ -38,9 +37,12 @@ export class BookingComponent implements OnInit {
 
 
   getavailableflights(){
-    console.log(this.source);
-    console.log(this.destination)
-    this.bookingservice.viewavailableflights(this.source,this.destination,this.date).subscribe(response=>this.handleSuccessfulResponse(response));
+    console.log(this.source1)
+var index= this.source1.indexOf("-");  
+var source = this.source1.substr(index + 1)
+var index1= this.destination1.indexOf("-");  
+var destination = this.destination1.substr(index1 + 1)
+    this.bookingservice.viewavailableflights(source,destination,this.date).subscribe(response=>this.handleSuccessfulResponse(response));
 console.log(this.flights)  }
 
   handleSuccessfulResponse(response){
