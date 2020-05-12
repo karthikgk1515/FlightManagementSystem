@@ -26,6 +26,7 @@ export class ScheduledflightComponent implements OnInit {
   onSubmit(addschedule:Scheduledflight):any{
      this.scheduleservice.addScheduledflight(addschedule,this.flight,this.sourceairport,this.destinationairport).subscribe(data => {
       this.message=data});
+     
   }
 
 }
