@@ -16,15 +16,23 @@
 <div *ngIf="book!=null else elseBlock">
 <form>
         <div class="container" *ngFor="let b of book">
+          <br>
       <h2>Booking Details:</h2><br>
-      Booking ID: <label class="col-sm-1"> {{b.bookingId}} </label><br>
+      <div>
+      Booking ID   : <label class="col-sm-1"> {{b.bookingId}} </label><br>
+    </div>
+    <div>
+      Booking Cost: <label class="col-sm-1"> {{b.ticketCost}} </label><br>
+    </div>
+    <div>
       Booking Date: <label class="col-sm-3"> {{b.bookingDate}} </label><br>
+    </div><br><br>
       <h4>Flight Deatils:</h4>
       <div class="form-group">
         Flight Number:  <label class="col-sm-1">{{b.scheduledflight.flight.flightNumber}}</label><br>
       </div>
       <div class="form-group">
-        Source Airport: <label class="col-sm-2">{{b.scheduledflight.sourceairport.airportName}}</label><br>
+        Source Airport: <label class="col-sm-4">{{b.scheduledflight.sourceairport.airportName}}</label><br>
       </div>
       <div class="form-group">
         Destination Airport: <label class="col-sm-2">{{b.scheduledflight.destinationairport.airportName}}</label><br>
