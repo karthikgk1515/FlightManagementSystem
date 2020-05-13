@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Scheduledflight,  ScheduleserviceService } from '../scheduleservice.service'
 import { Router } from '@angular/router';
 import { BookingserviceService, Airport,Booking, Passenger } from '../bookingservice.service';
-
+import {Userdata} from '../myservice.service';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -23,6 +23,7 @@ export class BookingComponent implements OnInit {
   availableseats:any;
   source1:string;
   destination1:string;
+  user:Userdata;
   constructor(private scheduledservice:ScheduleserviceService, private bookingservice:BookingserviceService, private router:Router) { }
 
  
@@ -37,7 +38,6 @@ export class BookingComponent implements OnInit {
 
 
   getavailableflights(){
-    console.log(this.source1)
 var index= this.source1.indexOf("-");  
 var source = this.source1.substr(index + 1)
 var index1= this.destination1.indexOf("-");  
@@ -63,7 +63,6 @@ console.log(this.flights)  }
   addbooking(addbooking:Booking):any{
     this.bookingservice.checkavailability(addbooking.noOfPassengers,this.availableseats,this.scheduledflightid).subscribe(
       data =>{
-      console.log(data)
       if(data=="seats")
       {
      this.bookingservice.addbooking(addbooking,this.username, this.scheduledflightid).subscribe(data => {
