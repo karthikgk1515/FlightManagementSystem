@@ -8,9 +8,7 @@ import {HttpClient,HttpHeaders} from '@angular/common/http';
 export class FlightserviceService {
 
   constructor(private ser:HttpClient) { }
-  flight(u: Flight) {
-    throw new Error("Method not implemented.");
-  }
+
 updateflight:Flight
   public addflight(addflight:Flight){
     console.log("ins service add");

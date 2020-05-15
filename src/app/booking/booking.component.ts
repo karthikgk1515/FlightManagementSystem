@@ -35,8 +35,6 @@ export class BookingComponent implements OnInit {
     this.airport=response;
   }
 
-
-
   getavailableflights(){
 var index= this.source1.indexOf("-");  
 var source = this.source1.substr(index + 1)

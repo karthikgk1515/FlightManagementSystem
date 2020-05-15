@@ -21,29 +21,12 @@ export class BookingserviceService {
     return this.http.delete("http://localhost:9999/customer/deleteBooking/" + bookingid,  { headers, responseType: 'text'});
   }
 
-  public getAllBooking() {
-    console.log("ins service get schedule");
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.get("http://localhost:9999/customer/getAllBookings", {headers, responseType:'json'});
-  }
-
   public getBooking(username:string) {
     console.log("ins service get schedule");
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
     return this.http.get("http://localhost:9999/customer/getbooking/"+username, {headers, responseType:'json'});
   }
 
-  public updateBooking(updatebooking: Booking) {
-    this.updatebooking = updatebooking;
-  }
-  public updateBookingMethod() {
-    return this.updatebooking;
-  }
-  public onUpdateBooking(updatebooking: Booking) {
-    console.log("ins service update");
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.put("http://localhost:9999/customer/updateBooking",updatebooking,  { headers, responseType: 'text'});
-  }
 
   public getbookingid()
   {
